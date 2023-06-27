@@ -26,19 +26,27 @@ export const TarjetaDetalleActivo = (props) => {
         <ScrollView horizontal={true} contentContainerStyle={styles.content}>
           <View style={{ flexDirection: "column" }}>
             <StyledText subtitle bold margin>
-              Custodio{" "}
+              NActivo{" "}
             </StyledText>
             <StyledText bold margin>
-              {ObjPedido.AreaEncargada}
+              {ObjPedido.NActivo}
+            </StyledText>
+          </View>
+          <View style={{ flexDirection: "column" }}>
+            <StyledText subtitle bold margin>
+              Donador{" "}
+            </StyledText>
+            <StyledText bold margin>
+              {ObjPedido.donador}
             </StyledText>
           </View>
 
           <View style={{ flexDirection: "column" }}>
             <StyledText subtitle bold margin>
-              AreaEncargada{" "}
+              Tipo{" "}
             </StyledText>
             <StyledText bold margin>
-              {ObjPedido.AreaEncargada}
+              {ObjPedido.Tipo}
             </StyledText>
           </View>
 
@@ -53,39 +61,15 @@ export const TarjetaDetalleActivo = (props) => {
 
           <View style={{ flexDirection: "column" }}>
             <StyledText subtitle bold margin>
-              MacroProceso{" "}
+              Razon Social{" "}
             </StyledText>
             <StyledText bold margin>
-              {ObjPedido.MacroProceso}
+              {ObjPedido.Razon_Social}
             </StyledText>
           </View>
 
-          <View style={{ flexDirection: "column" }}>
-            <StyledText subtitle bold margin>
-              NActivo{" "}
-            </StyledText>
-            <StyledText bold margin>
-              {ObjPedido.NActivo}
-            </StyledText>
-          </View>
-
-          <View style={{ flexDirection: "column" }}>
-            <StyledText subtitle bold margin>
-              NombreActivo{" "}
-            </StyledText>
-            <StyledText bold margin>
-              {ObjPedido.NombreActivo}
-            </StyledText>
-          </View>
-
-          <View style={{ flexDirection: "column" }}>
-            <StyledText subtitle bold margin>
-              Propietario{" "}
-            </StyledText>
-            <StyledText bold margin>
-              {ObjPedido.Propietario}
-            </StyledText>
-          </View>
+         
+         
 
           <View style={{ flexDirection: "column" }}>
             <StyledText subtitle bold margin>
@@ -104,23 +88,20 @@ export const TarjetaDetalleActivo = (props) => {
             <Image
               style={styles.logo}
               source={{
-                uri:"https://firebasestorage.googleapis.com/v0/b/seguridadinformatica-59a75.appspot.com/o/imageA-1.jpeg?alt=media&token=c2a8ba6a-4535-42ea-97db-16e7c2627857",
+                uri: "https://firebasestorage.googleapis.com/v0/b/seguridadinformatica-59a75.appspot.com/o/imageA-1.jpeg?alt=media&token=c2a8ba6a-4535-42ea-97db-16e7c2627857",
               }}
             />
           </View>
         </ScrollView>
 
         <View>
-            
-        <Text></Text>    
-        <Text></Text>    
-        <Text></Text>    
-        <Text></Text>    
-        <Text></Text>    
-            
-        </View>        
-
-
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
+          <Text></Text>
+        </View>
+{/* 
         <ScrollView horizontal={true} contentContainerStyle={styles.content}>
           <View style={{ flexDirection: "column" }}>
             <StyledText subtitle bold margin>
@@ -147,9 +128,6 @@ export const TarjetaDetalleActivo = (props) => {
             </StyledText>
           </View>
 
-          
-
-
           <View style={{ flexDirection: "column" }}>
             <StyledText subtitle bold margin>
               VA{" "}
@@ -158,29 +136,39 @@ export const TarjetaDetalleActivo = (props) => {
               {ObjPedido.VA}
             </StyledText>
           </View>
-
-        </ScrollView>
+        </ScrollView> */}
       </View>
-      
-      <View> 
 
+      <View>
+        <StyledText subtitle bold margin>
+          CLASIFICACION DEL ACTIVO{" "}
+        </StyledText>
+        <StyledText bold margin>
+          {ObjPedido.selectedValue == "Urgente" ? (
+            <View style={{ backgroundColor: "red", padding: 20 }}>
+              <Text>Critico</Text>
+            </View>
+          ) : (
+            <Text></Text>
+          )}
+          {ObjPedido.selectedValue == "Medio" ? (
+            <View style={{ backgroundColor: "blue", padding: 20 }}>
+              <Text>Importante</Text>
+            </View>
+          ) : (
+            <Text></Text>
+          )}
+          {ObjPedido.selectedValue == "Bajo" ? (
+            <View style={{ backgroundColor: "blue", padding: 20 }}>
+              <Text>Secundario</Text>
+            </View>
+          ) : (
+            <Text></Text>
+          )}
 
-      <StyledText subtitle bold margin>
-              CLASIFICACION DEL ACTIVO{" "}
-            </StyledText>
-            <StyledText bold margin>
-
-                {ObjPedido.selectedValue =="Critico" ? (<View style={{backgroundColor:'red' ,  padding: 20, }} ><Text >Critico</Text></View>):<Text></Text>}
-                {ObjPedido.selectedValue =="Importante" ? (<View style={{backgroundColor:'blue' ,  padding: 20, }} ><Text >Importante</Text></View>):<Text></Text>}
-                {ObjPedido.selectedValue =="Secundario" ? (<View style={{backgroundColor:'blue' ,  padding: 20, }} ><Text >Secundario</Text></View>):<Text></Text>}
-              
-              
-              {/* {ObjPedido.selectedValue} */}
-            </StyledText>
+          {/* {ObjPedido.selectedValue} */}
+        </StyledText>
       </View>
-            
-
-
     </ScrollView>
   );
 };

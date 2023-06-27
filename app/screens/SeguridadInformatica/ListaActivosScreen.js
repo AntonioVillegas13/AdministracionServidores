@@ -61,7 +61,7 @@ export const ListaActivo = ({ navigation }) => {
       <Header />
 
       <View style={styles.cajaCabecera}>
-        <Text style={{ fontSize: theme.fontSize.title }}>LISTA DE ACTIVOS</Text>
+        <Text style={{ fontSize: theme.fontSize.title,textAlign:"center" }}>LISTA DE DONACIONES</Text>
       </View>
       <View style={styles.cajaCuerpo}>
         <TarjetaActivos pedidos={pedidos} navegar={navigation} />
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
   },
   cajaCabecera: {
     //backgroundColor: 'cyan',
-    flex: 1,
+    flex: 2,
     alignItems: "center",
     justifyContent: "flex-start",
     marginBottom: 50,

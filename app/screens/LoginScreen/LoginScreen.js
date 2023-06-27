@@ -10,7 +10,7 @@ import StyledText from '../../theme/StyledText';
 import { HelperText, TextInput } from 'react-native-paper';
 import theme from '../../theme/theme'
 import { validateEmail } from "../../commons/validations";
-import Logotipo from "../../../assets/HermesLogo.png";
+import Logotipo from "../../../assets/HermesLogo.jpg";
 
 export const LoginForm = ({ navigation }) => {
     const [usuario, setUsuario] = useState();
@@ -137,7 +137,7 @@ export const LoginForm = ({ navigation }) => {
             </View>
         </Modal>
         <View style={styles.cajaCabecera}>
-            <Image source={require('../../../assets/HermesLogo.png')} style={{ width: 500, height: 160, margin: 30, resizeMode: 'contain' }} />
+            <Image source={require('../../../assets/HermesLogo.jpg')} style={{ width: 500, height: 160, margin: 30, resizeMode: 'contain' }} />
         </View>
         <View style={styles.cajaCuerpo}>
 

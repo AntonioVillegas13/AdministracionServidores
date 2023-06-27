@@ -17,17 +17,17 @@ import { SubirFoto, SubirIamgen } from "../../Services/ImagesSrv";
 import Header from "../../Components/Header";
 import { TouchableOpacity } from "react-native-web";
 import StyledText from "../../Components/StyledText";
-import QRCode from "react-native-qrcode-svg";
+// import QRCode from "react-native-qrcode-svg";
 import { AutocompleteDropdown } from "react-native-autocomplete-dropdown";
 
 export function AniadirActivos({ route, navigation }) {
   const [Idaux, setId] = useState("A-");
-  const [MacroProceso, setMacroProceso] = useState("");
-  const [AreaEncargada, setAreaEncargada] = useState("");
-  const [NombreActivo, setNombreActivo] = useState("");
+  const [Tipo, setTipo] = useState("");
+  const [donador, setdonador] = useState("");
+  const [Razon_Social, setRazon_Social] = useState("");
   const [Descripcion, setDescripcion] = useState("");
   const [Ubicacion, setUbicacion] = useState("");
-  const [Propietario, setPropietario] = useState("");
+  const [cantidad, setcantidad] = useState("");
   const [Custodio, setCustodio] = useState("");
   const [Confidencialidad, setConfidencialidad] = useState(0);
   const [Integridad, setIntegridad] = useState(0);
@@ -83,38 +83,32 @@ export function AniadirActivos({ route, navigation }) {
     console.log("NUEVO URL", Url);
     console.log("Objeto", {
       NActivo: Idaux,
-      MacroProceso: MacroProceso,
-      AreaEncargada: AreaEncargada,
-      NombreActivo: NombreActivo,
+      Tipo: Tipo,
+      donador: donador,
+      Razon_Social: Razon_Social,
       Descripcion: Descripcion,
-      NombreActivo: NombreActivo,
+      Razon_Social: Razon_Social,
       Descripcion: Descripcion,
       Ubicacion: Ubicacion,
-      Propietario: Propietario,
-      Custodio: Custodio,
+      cantidad: cantidad,
+    
       url: Url,
-      para: selectedItem
+      para: selectedItem,
     });
 
     AddActive({
       NActivo: Idaux,
-      MacroProceso: MacroProceso,
-      AreaEncargada: AreaEncargada,
-      NombreActivo: NombreActivo,
+      Tipo: Tipo,
+      donador: donador,
+      Razon_Social: Razon_Social,
       Descripcion: Descripcion,
-      NombreActivo: NombreActivo,
+      Razon_Social: Razon_Social,
       Descripcion: Descripcion,
       Ubicacion: Ubicacion,
-      Propietario: Propietario,
-      Custodio: Custodio,
+      cantidad: cantidad,
       url: Url,
-      Confidencialidad: Confidencialidad,
-      Integridad: Integridad,
-      Disponibilidad: Disponibilidad,
-      VA: VA,
       selectedValue: selectedValue,
-      para: selectedItem
-
+      
     });
   };
 
@@ -124,11 +118,11 @@ export function AniadirActivos({ route, navigation }) {
         <Header />
         <StyledText subtitle center>
           {" "}
-          IDENTIFICACION DE LOS ACTIVOS DE INFORMACION
+          INFORMACION GENERAL
         </StyledText>
         <StyledText subtitle> </StyledText>
         <TextInput
-          label="N° de Activo"
+          label="N° de Donacion"
           value={Idaux + ""}
           editable={false}
           mode="outlined"
@@ -136,39 +130,35 @@ export function AniadirActivos({ route, navigation }) {
           textColor="gray"
         />
         <TextInput
-          label="Macro Proceso"
-          value={MacroProceso}
-          onChangeText={setMacroProceso}
+          label="Tipo"
+          value={Tipo}
+          onChangeText={setTipo}
           mode="outlined"
           keyboardType="default"
         />
         <TextInput
-          label="Area encargada"
-          value={AreaEncargada}
-          onChangeText={setAreaEncargada}
+          label="Donador"
+          value={donador}
+          onChangeText={setdonador}
           mode="outlined"
           keyboardType="default"
         />
-        {/* <AutocompleteDropdown
-          clearOnFocus={false}
-          closeOnBlur={true}
-          closeOnSubmit={false}
-          initialValue={{ id: "2" }} // or just '2'
-          onSelectItem={setSelectedItem}
-          dataSet={[
-            { id: "1", title: "Computacion" },
-            { id: "2", title: "Sistemas" }
 
-          ]}
-        /> */}
-        
         <TextInput
-          label="Nombre Activo"
-          value={NombreActivo}
-          onChangeText={setNombreActivo}
+          label="Razon Social"
+          value={Razon_Social}
+          onChangeText={setRazon_Social}
           mode="outlined"
           keyboardType="default"
         />
+        <TextInput
+          label="Cantidad"
+          value={cantidad}
+          onChangeText={setcantidad}
+          mode="outlined"
+          keyboardType="default"
+        />
+
         <TextInput
           label="Descripcion"
           value={Descripcion}
@@ -183,14 +173,8 @@ export function AniadirActivos({ route, navigation }) {
           mode="outlined"
           keyboardType="default"
         />
-        <TextInput
-          label="Propietario"
-          value={Propietario}
-          onChangeText={setPropietario}
-          mode="outlined"
-          keyboardType="default"
-        />
-        <View
+
+        {/* <View
           style={{
             flexDirection: "row",
             alignItems: "stretch",
@@ -204,7 +188,7 @@ export function AniadirActivos({ route, navigation }) {
             mode="outlined"
             keyboardType="default"
           />
-        </View>
+        </View> */}
         <View
           style={{
             alignItems: "center",
@@ -212,7 +196,7 @@ export function AniadirActivos({ route, navigation }) {
           }}
         >
           <Button
-            title="Agregar Imagen del Activo"
+            title="Agregar Imagen referencial de la Donacion"
             onPress={() => {
               pickImages();
             }}
@@ -227,54 +211,16 @@ export function AniadirActivos({ route, navigation }) {
             }}
           />
         </View>
-        <StyledText subtitle> </StyledText>
+       
         <StyledText subtitle center>
-          {" "}
-          VALORACION DE ACTIVOS
-        </StyledText>
-        <StyledText subtitle> </StyledText>
-        <TextInput
-          style={{ flex: 1, marginRight: 10 }}
-          label="Confidencialidad"
-          value={Confidencialidad}
-          onChangeText={setConfidencialidad}
-          mode="outlined"
-          keyboardType="number-pad"
-        />
-        <TextInput
-          style={{ flex: 1, marginRight: 10 }}
-          label="Integridad"
-          value={Integridad}
-          onChangeText={setIntegridad}
-          mode="outlined"
-          keyboardType="number-pad"
-        />
-        <TextInput
-          style={{ flex: 1, marginRight: 10 }}
-          label="Disponibilidad"
-          value={Disponibilidad}
-          onChangeText={setDisponibilidad}
-          mode="outlined"
-          keyboardType="number-pad"
-        />
-        <TextInput
-          style={{ flex: 1, marginRight: 10 }}
-          label="VA"
-          value={VA + ""}
-          editable={false}
-          mode="outlined"
-          keyboardType="default"
-          textColor="gray"
-        />
-        <StyledText subtitle center>
-          -CLASIFICACION DE LOS ACTIVOS{" "}
+          DEFINICION DEL ESTATUS DE LA ENTREGA{" "}
         </StyledText>
         <StyledText subtitle> </StyledText>
         <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
           <Button
-            title="Critico"
+            title="Urgente"
             onPress={() => {
-              setSelectedValue("Critico");
+              setSelectedValue("Urgente");
             }}
             buttonStyle={{
               borderRadius: 10,
@@ -289,9 +235,9 @@ export function AniadirActivos({ route, navigation }) {
           />
 
           <Button
-            title="Importante"
+            title="Medio"
             onPress={() => {
-              setSelectedValue("Importante");
+              setSelectedValue("Medio");
             }}
             buttonStyle={{
               borderRadius: 10,
@@ -306,9 +252,9 @@ export function AniadirActivos({ route, navigation }) {
           />
 
           <Button
-            title="Secundario"
+            title="Bajo"
             onPress={() => {
-              setSelectedValue("Secundario");
+              setSelectedValue("Bajo");
             }}
             buttonStyle={{
               borderRadius: 10,
