@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { Picker } from "react-native-web";
+import {  Picker } from "react-native-web";
 import {
   View,
   StyleSheet,
   FlatList,
   TouchableHighlight,
   ScrollView,
+  Alert
 } from "react-native";
 import { Card, Text, TextInput, DropDown } from "react-native-paper";
 import theme from "../../theme/theme";
@@ -19,6 +20,7 @@ import { TouchableOpacity } from "react-native-web";
 import StyledText from "../../Components/StyledText";
 // import QRCode from "react-native-qrcode-svg";
 import { AutocompleteDropdown } from "react-native-autocomplete-dropdown";
+import { getLocation } from "../../Services/CoordenadasSrv";
 
 export function AniadirActivos({ route, navigation }) {
   const [Idaux, setId] = useState("A-");
@@ -78,12 +80,22 @@ export function AniadirActivos({ route, navigation }) {
     await SubirFoto(resultado.assets[0].uri, Idaux + "", setUrl);
   };
 
-  const AñadirProducto = () => {
+  const AñadirProducto = async() => {
     // SubirIamgen();
+    const locationCoords = await getLocation();
+    const { latitude, longitude } = locationCoords;
+    // Alert.alert(
+    //   "Coordenas Capturadas",latitude,"+",longitude
+      
+    // );
+    console.log("latitud:",latitude)
+    console.log("lomngitud:",longitude)
+
     console.log("NUEVO URL", Url);
     console.log("Objeto", {
       NActivo: Idaux,
       Tipo: Tipo,
+      coordenadas:locationCoords,
       donador: donador,
       Razon_Social: Razon_Social,
       Descripcion: Descripcion,
@@ -100,11 +112,12 @@ export function AniadirActivos({ route, navigation }) {
       NActivo: Idaux,
       Tipo: Tipo,
       donador: donador,
+      coordenadas:locationCoords,
       Razon_Social: Razon_Social,
       Descripcion: Descripcion,
       Razon_Social: Razon_Social,
       Descripcion: Descripcion,
-      Ubicacion: Ubicacion,
+      // Ubicacion: Ubicacion,
       cantidad: cantidad,
       url: Url,
       selectedValue: selectedValue,
@@ -156,7 +169,7 @@ export function AniadirActivos({ route, navigation }) {
           value={cantidad}
           onChangeText={setcantidad}
           mode="outlined"
-          keyboardType="default"
+          keyboardType="number-pad"
         />
 
         <TextInput
@@ -166,13 +179,13 @@ export function AniadirActivos({ route, navigation }) {
           mode="outlined"
           keyboardType="default"
         />
-        <TextInput
+        {/* <TextInput
           label="Ubicacion"
           value={Ubicacion}
           onChangeText={setUbicacion}
           mode="outlined"
           keyboardType="default"
-        />
+        /> */}
 
         {/* <View
           style={{
@@ -210,6 +223,7 @@ export function AniadirActivos({ route, navigation }) {
               paddingTop: 10,
             }}
           />
+          
         </View>
        
         <StyledText subtitle center>
@@ -271,8 +285,9 @@ export function AniadirActivos({ route, navigation }) {
         <View style={styles.cajaBotones}>
           <Button
             title="Agregar Activo"
-            onPress={() => {
+            onPress={async() => {
               AñadirProducto();
+             
             }}
             buttonStyle={{
               borderRadius: 10,

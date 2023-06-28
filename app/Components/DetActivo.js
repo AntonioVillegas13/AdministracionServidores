@@ -26,7 +26,7 @@ export const TarjetaDetalleActivo = (props) => {
         <ScrollView horizontal={true} contentContainerStyle={styles.content}>
           <View style={{ flexDirection: "column" }}>
             <StyledText subtitle bold margin>
-              NActivo{" "}
+              NDonativo{" "}
             </StyledText>
             <StyledText bold margin>
               {ObjPedido.NActivo}

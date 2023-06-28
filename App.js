@@ -73,7 +73,7 @@ const Watson = () => {
         component={ManejoActivos}
         options={{
           headerShown: false,
-          title: "Activos",
+          title: "Donaciones",
         }}
       />
     </TabWatson.Navigator>
