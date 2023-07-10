@@ -119,7 +119,7 @@ export const consultarNoProcesado = async (fnsetPedidos) => {
     
     // console.log("global--------------------------------",Id);
     // const productoRef = collection(global.dbCon, "Pedidos");
-    const productoRef= collection(global.dbCon, "Activos");
+    const productoRef= collection(global.dbCon, "Donacion");
 
     const SnapPedidos = await getDocs(productoRef);
     let PedidoArray = []

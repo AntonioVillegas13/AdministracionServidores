@@ -4,14 +4,14 @@ import { collection, doc, getDocs, setDoc, addDoc, getDoc, query, where } from '
 
 export const AddActive=(producto)=>{
     console.log(global.dbCon);
-    const productRef = doc(global.dbCon, "Activos", producto.NActivo);
+    const productRef = doc(global.dbCon, "Donacion", producto.NActivo);
     setDoc(productRef, producto);
 
 }
 
 export const consultarUnActivo = async (id,fnsetObj) => {
     //console.log("globla",global.dbCon);
-    const productoRef = doc(global.dbCon, "Activos",id);
+    const productoRef = doc(global.dbCon, "Donacion",id);
     const docSnap = await getDoc(productoRef);
     console.log("dsfdsfdfdsfdsfds",docSnap.data());
 
@@ -19,13 +19,13 @@ export const consultarUnActivo = async (id,fnsetObj) => {
     PedidoObj=docSnap.data();
     fnsetObj(PedidoObj);
     // console.log("productoFunc", PedidoObj);
-
+ 
 }
 
 
 export const consultarActivo = async (setId) => {
     //console.log("globla",global.dbCon);
-    const productoRef = collection(global.dbCon, "Activos");
+    const productoRef = collection(global.dbCon, "Donacion");
     const SnapProductos = await getDocs(productoRef);
     let ProductosArray = []
     SnapProductos.forEach((documento) => {

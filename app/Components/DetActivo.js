@@ -6,20 +6,28 @@ import {
   StyleSheet,
   View,
   Text,
+  Linking,
   Image,
+  TouchableOpacity,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import theme from "../theme/theme";
 import PedidoCard from "./PedidoCard";
 import StyledText from "./StyledText";
-
+import { Button } from "react-native-paper";
+// import { Icon } from "@rneui/base";
+import Icon from "react-native-vector-icons/FontAwesome"; // Importa el icono desead
 export const TarjetaDetalleActivo = (props) => {
   const Pedido = props.item;
   const ObjPedido = props.objPedido;
   console.log("PEDIDO", Pedido);
   console.log("PEDIDO OBJETO", ObjPedido);
   console.log("PEDIDO OBJETO", ObjPedido);
+  const openMap = () => {
+    const url = `https://www.google.com/maps?q=${ObjPedido.coordenadas?.altitude},${ObjPedido.coordenadas?.accuracy}`;
 
+    Linking.openURL(url);
+  };
   return (
     <ScrollView>
       <View style={styles.section}>
@@ -29,7 +37,8 @@ export const TarjetaDetalleActivo = (props) => {
               NDonativo{" "}
             </StyledText>
             <StyledText bold margin>
-              {ObjPedido.NActivo}
+              {/* {ObjPedido?.NActivo} */}
+              {ObjPedido?.NActivo}
             </StyledText>
           </View>
           <View style={{ flexDirection: "column" }}>
@@ -68,29 +77,22 @@ export const TarjetaDetalleActivo = (props) => {
             </StyledText>
           </View>
 
-         
-         
-
           <View style={{ flexDirection: "column" }}>
             <StyledText subtitle bold margin>
-              Ubicacion{" "}
+              Ubicacion
             </StyledText>
-            <StyledText bold margin>
-              {ObjPedido.Ubicacion}
-            </StyledText>
-          </View>
-
-          <View style={{ flexDirection: "column" }}>
-            <StyledText subtitle bold margin>
-              Url{" "}
-            </StyledText>
-            <Text>sfdsfdsr</Text>
-            <Image
-              style={styles.logo}
-              source={{
-                uri: "https://firebasestorage.googleapis.com/v0/b/seguridadinformatica-59a75.appspot.com/o/imageA-1.jpeg?alt=media&token=c2a8ba6a-4535-42ea-97db-16e7c2627857",
-              }}
-            />
+            <TouchableOpacity
+              onPress={openMap}
+              style={{ marginHorizontal: 50 }}
+            >
+              <Icon
+                type="FontAwesome"
+                name="map-marker"
+                size={30}
+                color="#000"
+              />
+            </TouchableOpacity>
+            <StyledText center>Click Aqui!!</StyledText>
           </View>
         </ScrollView>
 
@@ -101,7 +103,7 @@ export const TarjetaDetalleActivo = (props) => {
           <Text></Text>
           <Text></Text>
         </View>
-{/* 
+        {/* 
         <ScrollView horizontal={true} contentContainerStyle={styles.content}>
           <View style={{ flexDirection: "column" }}>
             <StyledText subtitle bold margin>
@@ -140,34 +142,17 @@ export const TarjetaDetalleActivo = (props) => {
       </View>
 
       <View>
-        <StyledText subtitle bold margin>
-          CLASIFICACION DEL ACTIVO{" "}
-        </StyledText>
-        <StyledText bold margin>
-          {ObjPedido.selectedValue == "Urgente" ? (
-            <View style={{ backgroundColor: "red", padding: 20 }}>
-              <Text>Critico</Text>
-            </View>
-          ) : (
-            <Text></Text>
-          )}
-          {ObjPedido.selectedValue == "Medio" ? (
-            <View style={{ backgroundColor: "blue", padding: 20 }}>
-              <Text>Importante</Text>
-            </View>
-          ) : (
-            <Text></Text>
-          )}
-          {ObjPedido.selectedValue == "Bajo" ? (
-            <View style={{ backgroundColor: "blue", padding: 20 }}>
-              <Text>Secundario</Text>
-            </View>
-          ) : (
-            <Text></Text>
-          )}
-
-          {/* {ObjPedido.selectedValue} */}
-        </StyledText>
+        <View style={{ flexDirection: "column" ,alignItems:"center" }}>
+          <StyledText subtitle bold margin>
+            Imagen{" "}
+          </StyledText>
+          <Image
+              style={{ width: 200, height: 200 }}
+              resizeMode="contain"F
+            source={{
+              uri: ObjPedido?.url   }}
+          />
+        </View>
       </View>
     </ScrollView>
   );
@@ -195,4 +180,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  logo:{
+    margin:20
+  }
 });
