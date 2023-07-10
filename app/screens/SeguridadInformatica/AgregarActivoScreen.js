@@ -287,7 +287,7 @@ export function AniadirActivos({ route, navigation }) {
             title="Agregar Activo"
             onPress={async() => {
               AñadirProducto();
-             
+              navigation.navigate("ListaActivos")
             }}
             buttonStyle={{
               borderRadius: 10,
